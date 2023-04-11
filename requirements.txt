@@ -1,7 +1,7 @@
 accelerate
 appdirs
 loralib
-bitsandbytes
+git+https://github.com/TimDettmers/bitsandbytes.git
 black
 black[jupyter]
 datasets
