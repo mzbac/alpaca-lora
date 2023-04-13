@@ -1703,5 +1703,825 @@
     "instruction": "How can the UndefinedToNull type be used in practice?",
     "input": "",
     "output": "The UndefinedToNull type can be used in practice to ensure that all undefined values in a given object or array are converted to null values. This can be useful in situations where null is a valid value but undefined is not, or when working with APIs that return undefined values."
+  },
+  {
+    "instruction": "Implement the built-in Pick<T, K>",
+    "input": "",
+    "output": "type MyPick<T, K extends keyof T> = {\n  [k in K]: T[k]\n}"
+  },
+  {
+    "instruction": "What is the purpose of the Pick<T, K> type in TypeScript?",
+    "input": "",
+    "output": "The Pick<T, K> type in TypeScript allows you to create a new type by selecting a subset of properties from an existing type T based on the keys in K."
+  },
+  {
+    "instruction": "What is the syntax to declare a new type using the Pick<T, K> type in TypeScript?",
+    "input": "",
+    "output": "The syntax to declare a new type using the Pick<T, K> type in TypeScript is: type NewType = Pick<ExistingType, Keys>"
+  },
+  {
+    "instruction": "What is the purpose of the keyof keyword in TypeScript?",
+    "input": "",
+    "output": "The keyof keyword in TypeScript is used to get a union type of all the keys of an object type. It allows you to create more precise types by using the actual keys of an object instead of string literals."
+  },
+  {
+    "instruction": "What is the purpose of the extends keyword in a TypeScript type parameter?",
+    "input": "",
+    "output": "The extends keyword in a TypeScript type parameter is used to specify a constraint on the type parameter. It restricts the types that can be used as arguments for the type parameter to those that are assignable to the specified type."
+  },
+  {
+    "instruction": "What is the purpose of the in keyword in a TypeScript mapped type?",
+    "input": "",
+    "output": "The in keyword in a TypeScript mapped type is used to iterate over the keys of an object type. It allows you to create new types by mapping over the keys of an existing type and applying a transformation to each key."
+  },
+  {
+    "instruction": "Implement the built-in Readonly<T>",
+    "input": "",
+    "output": "type MyReadonly<T> = { readonly [P in keyof T]: T[P]; };"
+  },
+  {
+    "instruction": "What is the purpose of the MyReadonly type?",
+    "input": "",
+    "output": "The purpose of the MyReadonly type is to create a new type that is the same as the input type, but with all properties set to readonly."
+  },
+  {
+    "instruction": "What does the keyof keyword do in the MyReadonly type?",
+    "input": "",
+    "output": "The keyof keyword in the MyReadonly type is used to get the keys of the input type, which are then used to create the new readonly properties."
+  },
+  {
+    "instruction": "What is the syntax for creating a new property in the MyReadonly type?",
+    "input": "",
+    "output": "The syntax for creating a new property in the MyReadonly type is [P in keyof T]: T[P]. This creates a new property with the same key as the original property, but with the readonly modifier."
+  },
+  {
+    "instruction": "Can the MyReadonly type be used with any input type?",
+    "input": "",
+    "output": "Yes, the MyReadonly type can be used with any input type, as long as the input type has properties that can be made readonly."
+  },
+  {
+    "instruction": "What is an example of using the MyReadonly type?",
+    "input": "",
+    "output": "An example of using the MyReadonly type is to create a readonly version of an interface, such as MyReadonly<MyInterface>."
+  },
+  {
+    "instruction": "implement TupleToObject<T>",
+    "input": "",
+    "output": "type TupleToObject<T extends readonly string[]> = {\n  [P in T[number]]: P\n}"
+  },
+  {
+    "instruction": "What is a tuple in TypeScript?",
+    "input": "",
+    "output": "A tuple is an array-like structure that allows storing multiple values of different types in a fixed order. In TypeScript, tuples are defined using the syntax [type1, type2, ...]."
+  },
+  {
+    "instruction": "What is the significance of the 'extends' keyword in the TupleToObject type?",
+    "input": "",
+    "output": "The 'extends' keyword is used to constrain the type parameter T to only accept an array of string literals. This ensures that the keys of the resulting object are valid string literals."
+  },
+  {
+    "instruction": "What is the purpose of the T[number] syntax in TupleToObject?",
+    "input": "",
+    "output": "The T[number] syntax is used to extract the union of all string literal types in the tuple T. This union is then used as the keys of the resulting object."
+  },
+  {
+    "instruction": "Can TupleToObject be used with tuples containing non-string elements?",
+    "input": "",
+    "output": "No, TupleToObject can only be used with tuples containing string literals as the keys of the resulting object."
+  },
+  {
+    "instruction": "What is the resulting type of TupleToObject<['a', 'b']>?",
+    "input": "",
+    "output": "The resulting type of TupleToObject<['a', 'b']> is {a: 'a', b: 'b'}."
+  },
+  {
+    "instruction": "Implement a generic First<T> that takes an Array T and returns its first element's type.",
+    "input": "",
+    "output": "type First<T extends any[]> = T extends [infer P, ...any[]] ? P : never"
+  },
+  {
+    "instruction": "What is the purpose of the 'infer' keyword in the type definition of First<T>?",
+    "input": "",
+    "output": "The 'infer' keyword is used to infer the type of the first element in the array type passed as the generic type parameter T to the First<T> type."
+  },
+  {
+    "instruction": "Can the First<T> type be used with non-array types?",
+    "input": "",
+    "output": "No, the First<T> type can only be used with array types because it expects an array type as its generic type parameter T."
+  },
+  {
+    "instruction": "What does the 'never' type signify in the type definition of First<T>?",
+    "input": "",
+    "output": "The 'never' type signifies that the type is not assignable to anything, and it is used in the type definition of First<T> to indicate that the type returned by the type is invalid when the array passed as its generic type parameter T is empty."
+  },
+  {
+    "instruction": "Can the First<T> type be used with an array that has more than one element?",
+    "input": "",
+    "output": "Yes, the First<T> type can be used with an array that has more than one element, but it will only return the type of the first element in the array."
+  },
+  {
+    "instruction": "What is the purpose of the 'extends any[]' clause in the type definition of First<T>?",
+    "input": "",
+    "output": "The 'extends any[]' clause in the type definition of First<T> is used to constrain the generic type parameter T to an array type or a subtype of an array type."
+  },
+  {
+    "instruction": "What is a tuple in TypeScript?",
+    "input": "",
+    "output": "A tuple in TypeScript is an array that has a fixed number of elements, each with a specific type. The types of the elements do not have to be the same."
+  },
+  {
+    "instruction": "What is a generic in TypeScript?",
+    "input": "",
+    "output": "A generic in TypeScript is a way to create reusable code that can work with different types. It allows you to define a type or function that can work with any type, rather than a specific one."
+  },
+  {
+    "instruction": "What is the purpose of the 'extends' keyword in a type parameter?",
+    "input": "",
+    "output": "The 'extends' keyword in a type parameter is used to specify a constraint on the type that can be used for that parameter. It ensures that the type used for the parameter meets the specified constraint."
+  },
+  {
+    "instruction": "What does the 'infer' keyword do in a conditional type?",
+    "input": "",
+    "output": "The 'infer' keyword in a conditional type is used to infer the type of a variable from another type. It allows you to extract a type from a larger type and use it in a different context."
+  },
+  {
+    "instruction": "How does the 'Length' type work in the given example?",
+    "input": "",
+    "output": "The 'Length' type in the given example takes a generic type parameter 'T' and extends it to any type. It then checks if the type has a 'length' property using the 'extends' keyword and the 'infer' keyword to extract the type of the 'length' property. If the type has a 'length' property, the type of the property is returned. Otherwise, 'never' is returned."
+  },
+  {
+    "instruction": "Can the 'Length' type be used with any type, or does it have specific requirements?",
+    "input": "",
+    "output": "The 'Length' type can be used with any type that has a 'length' property. This includes arrays, strings, and other objects that have a 'length' property."
+  },
+  {
+    "instruction": "What is the benefit of using advanced TypeScript types like the 'Length' type?",
+    "input": "",
+    "output": "Using advanced TypeScript types like the 'Length' type can help make your code more type-safe and easier to understand. It allows you to create reusable code that can work with different types, and it can catch errors at compile-time rather than runtime."
+  },
+  {
+    "instruction": "Implement the built-in Exclude<T, U>",
+    "input": "",
+    "output": "type MyExclude<T, U> =  T extends U ? never : T;"
+  },
+  {
+    "instruction": "What is the purpose of the Exclude<T, U> type in TypeScript?",
+    "input": "",
+    "output": "The Exclude<T, U> type in TypeScript is used to create a new type that excludes all the types in U from the type T."
+  },
+  {
+    "instruction": "How does the MyExclude<T, U> type differ from the built-in Exclude<T, U> type?",
+    "input": "",
+    "output": "The MyExclude<T, U> type is a custom implementation of the Exclude<T, U> type. It uses the same logic as the built-in type, but is named differently and is not part of the TypeScript standard library."
+  },
+  {
+    "instruction": "What is the purpose of the 'extends' keyword in the MyExclude<T, U> type?",
+    "input": "",
+    "output": "The 'extends' keyword in the MyExclude<T, U> type is used to check if the type T extends the type U. If it does, the type 'never' is returned, otherwise the type T is returned."
+  },
+  {
+    "instruction": "Can the MyExclude<T, U> type be used with any types T and U?",
+    "input": "",
+    "output": "Yes, the MyExclude<T, U> type can be used with any types T and U. As long as the types are compatible with the 'extends' keyword, the type will work as expected."
+  },
+  {
+    "instruction": "What is the benefit of using advanced TypeScript types like MyExclude<T, U>?",
+    "input": "",
+    "output": "Using advanced TypeScript types like MyExclude<T, U> can help improve code readability, maintainability, and type safety. They can also help catch errors at compile time rather than at runtime, which can save time and effort in debugging."
+  },
+  {
+    "instruction": "What is a wrapped type in TypeScript?",
+    "input": "",
+    "output": "A wrapped type in TypeScript is a type that is enclosed or wrapped inside another type, such as a Promise, Array, or Tuple."
+  },
+  {
+    "instruction": "How can we extract the type inside a wrapped type in TypeScript?",
+    "input": "",
+    "output": "We can extract the type inside a wrapped type in TypeScript using conditional types and the infer keyword. For example, to extract the type inside a Promise, we can define a type like this: type UnwrapPromise<T> = T extends Promise<infer U> ? U : never;"
+  },
+  {
+    "instruction": "What is a conditional type in TypeScript?",
+    "input": "",
+    "output": "A conditional type in TypeScript is a type that depends on a condition. It allows us to define a type that varies based on the type of a given value or type parameter."
+  },
+  {
+    "instruction": "How can we use recursion to extract the type inside a nested wrapped type in TypeScript?",
+    "input": "",
+    "output": "We can use recursion to extract the type inside a nested wrapped type in TypeScript by defining a conditional type that checks if the given type extends the wrapped type, and if so, recursively applies the same check to the type inside the wrapped type. For example, to extract the type inside a Promise that may be nested inside multiple layers of Promises, we can define a type like this: type Awaited<T> = T extends Promise<infer U> ? Awaited<U> : T;"
+  },
+  {
+    "instruction": "What is the infer keyword in TypeScript?",
+    "input": "",
+    "output": "The infer keyword in TypeScript is used in conditional types to infer the type of a type parameter from a given type. It allows us to extract the type of a value or type and use it in a new type definition."
+  },
+  {
+    "instruction": "What is the purpose of the If type in TypeScript?",
+    "input": "",
+    "output": "The If type in TypeScript is used to conditionally select one of two types based on a boolean condition."
+  },
+  {
+    "instruction": "What are the three type parameters of the If type?",
+    "input": "",
+    "output": "The three type parameters of the If type are C, T, and F. C represents the boolean condition, while T and F represent the types to be selected based on the condition."
+  },
+  {
+    "instruction": "What is the constraint on the C type parameter in the If type?",
+    "input": "",
+    "output": "The constraint on the C type parameter in the If type is that it must extend the boolean type."
+  },
+  {
+    "instruction": "What is the syntax for defining the If type in TypeScript?",
+    "input": "",
+    "output": "The syntax for defining the If type in TypeScript is: type If<C extends boolean, T, F> = C extends true ? T : F;"
+  },
+  {
+    "instruction": "How does the If type work in TypeScript?",
+    "input": "",
+    "output": "The If type in TypeScript works by checking if the condition C extends true. If it does, the type T is selected. Otherwise, the type F is selected."
+  },
+  {
+    "instruction": "What is a wrapped type in TypeScript?",
+    "input": "",
+    "output": "A wrapped type in TypeScript is a type that is enclosed within another type, such as a Promise type wrapping another type."
+  },
+  {
+    "instruction": "How can we extract the inner type from a wrapped type in TypeScript?",
+    "input": "",
+    "output": "We can extract the inner type from a wrapped type in TypeScript by using conditional types and the infer keyword. Specifically, we can define a type that checks if the input type extends the wrapped type, and if so, extract the inner type using the infer keyword."
+  },
+  {
+    "instruction": "What is the syntax for defining a type that extracts the inner type from a Promise type in TypeScript?",
+    "input": "",
+    "output": "The syntax for defining a type that extracts the inner type from a Promise type in TypeScript is: \n\ntype Awaited<T> = T extends Promise<infer U> \n  ? U extends Promise<any> \n    ? Awaited<U> \n    : U \n  : never;"
+  },
+  {
+    "instruction": "What does the Awaited type in TypeScript do?",
+    "input": "",
+    "output": "The Awaited type in TypeScript extracts the inner type from a Promise type by recursively checking if the Promise type wraps another Promise type, and if so, extracting the inner type until a non-Promise type is reached."
+  },
+  {
+    "instruction": "Can the Awaited type in TypeScript be used with other wrapped types besides Promise?",
+    "input": "",
+    "output": "Yes, the Awaited type in TypeScript can be used with other wrapped types besides Promise as long as the syntax of the wrapped type is known and can be used in the conditional type definition to extract the inner type."
+  },
+  {
+    "instruction": "Is it possible to extract the type that is wrapped inside a Promise type in TypeScript?",
+    "input": "",
+    "output": "Yes, it is possible to extract the type that is wrapped inside a Promise type in TypeScript using advanced type features."
+  },
+  {
+    "instruction": "What is the syntax to extract the type that is wrapped inside a Promise type in TypeScript?",
+    "input": "",
+    "output": "The syntax to extract the type that is wrapped inside a Promise type in TypeScript is 'Promise<infer U>'."
+  },
+  {
+    "instruction": "What is the purpose of the 'infer' keyword in TypeScript?",
+    "input": "",
+    "output": "The 'infer' keyword in TypeScript is used to infer the type of a generic type parameter from its usage within a type."
+  },
+  {
+    "instruction": "How can we create a new type in TypeScript that extracts the type that is wrapped inside a Promise type?",
+    "input": "",
+    "output": "We can create a new type in TypeScript that extracts the type that is wrapped inside a Promise type using the following syntax: 'type Awaited<T> = T extends Promise<infer U> ? U extends Promise<any> ? Awaited<U> : U : never;'"
+  },
+  {
+    "instruction": "Can we use the 'Awaited' type to extract the type that is wrapped inside other types besides Promise?",
+    "input": "",
+    "output": "No, the 'Awaited' type is specifically designed to extract the type that is wrapped inside a Promise type and may not work for other types."
+  },
+  {
+    "instruction": "If we have a type which is wrapped type like Promise. How we can get a type which is inside the wrapped type?\n\nFor example: if we have Promise<ExampleType> how to get ExampleType?",
+    "input": "",
+    "output": "type Awaited<T> = T extends Promise<infer U>\n  ? U extends Promise<any>\n    ? Awaited<U>\n    : U\n  : never;"
+  },
+  {
+    "instruction": "What is the purpose of the If<C, T, F> type in TypeScript?",
+    "input": "",
+    "output": "The If<C, T, F> type in TypeScript allows for conditional typing, where the resulting type is determined based on the boolean value of C. If C is true, the resulting type is T, otherwise it is F."
+  },
+  {
+    "instruction": "What are the constraints on the type parameter C in the If<C, T, F> type?",
+    "input": "",
+    "output": "The C type parameter in the If<C, T, F> type must extend the boolean type in TypeScript. This is because the If type is intended to work only with boolean values."
+  },
+  {
+    "instruction": "Can the If<C, T, F> type be used to check for truthiness of non-boolean types?",
+    "input": "",
+    "output": "No, the If<C, T, F> type cannot be used to check for truthiness of non-boolean types. It only works with boolean values, where the resulting type is determined based on the truthiness of C."
+  },
+  {
+    "instruction": "What is the syntax for using the If<C, T, F> type in TypeScript?",
+    "input": "",
+    "output": "The syntax for using the If<C, T, F> type in TypeScript is: If<boolean value, type for true case, type for false case>. For example, If<true, string, number> results in the type string."
+  },
+  {
+    "instruction": "Can the If<C, T, F> type be used recursively?",
+    "input": "",
+    "output": "Yes, the If<C, T, F> type can be used recursively to create complex conditional types. For example, If<true, string, If<false, number, boolean>> results in the type string | boolean."
+  },
+  {
+    "instruction": "Implement the util type If<C, T, F> which accepts condition C, a truthy value T, and a falsy value F. C is expected to be either true or false while T and F can be any type.",
+    "input": "",
+    "output": "type If<C extends boolean, T, F> = C extends true ? T : F;"
+  },
+  {
+    "instruction": "What is the purpose of implementing the Array.concat function in the type system?",
+    "input": "",
+    "output": "The purpose of implementing the Array.concat function in the type system is to ensure type safety when concatenating arrays. By using TypeScript's type system, we can create a type-safe implementation of the concat function that will detect any type mismatches between the two arrays being concatenated."
+  },
+  {
+    "instruction": "What is the Tuple type in TypeScript?",
+    "input": "",
+    "output": "The Tuple type in TypeScript is a fixed-length array type. It allows us to define an array with a specific number of elements, with each element having a specific type. Tuples can be used to ensure type safety when working with arrays of a specific size and structure."
+  },
+  {
+    "instruction": "What is the purpose of the spread operator (...) in the Concat type?",
+    "input": "",
+    "output": "The spread operator (...) in the Concat type is used to concatenate the two input arrays. By using the spread operator, we can combine the elements of two arrays into a new array. This allows us to create a new array that includes the elements of both input arrays in left-to-right order."
+  },
+  {
+    "instruction": "What is the difference between the readonly modifier and the const keyword in TypeScript?",
+    "input": "",
+    "output": "The readonly modifier and the const keyword both indicate that a value is immutable. However, readonly is used to create immutable properties and array elements, while const is used to create immutable variables. Readonly properties and array elements can only be set during initialization or in a constructor, while const variables can never be reassigned."
+  },
+  {
+    "instruction": "How can we ensure that the elements in the output array of Concat have the correct order?",
+    "input": "",
+    "output": "We can ensure that the elements in the output array of Concat have the correct order by using the spread operator to concatenate the two input arrays. The elements of the first array will be included first, followed by the elements of the second array. This will ensure that the output array has the elements of the input arrays in left-to-right order."
+  },
+  {
+    "instruction": "Implement the JavaScript Array.concat function in the type system. A type takes the two arguments. The output should be a new array that includes inputs in ltr order\n\n",
+    "input": "",
+    "output": "type Tuple = readonly unknown[];\n\ntype Concat<T extends Tuple, U extends Tuple> = [...T, ...U];"
+  },
+  {
+    "instruction": "What is the purpose of the IsEqual type?",
+    "input": "",
+    "output": "The IsEqual type is used to compare two types and return a boolean value indicating whether they are equal or not."
+  },
+  {
+    "instruction": "How does the IsEqual type work?",
+    "input": "",
+    "output": "The IsEqual type uses conditional types to create two functions that take no arguments and return either 1 or 2 depending on whether a given type extends T or U. It then compares the resulting functions to determine if T and U are equal."
+  },
+  {
+    "instruction": "What is the purpose of the Includes type?",
+    "input": "",
+    "output": "The Includes type is used to check if a given item is included in a given array type and return a boolean value indicating whether it is included or not."
+  },
+  {
+    "instruction": "How does the Includes type work?",
+    "input": "",
+    "output": "The Includes type uses the IsEqual type to compare the first element of the array to the given item. If they are equal, it returns true. If not, it recursively calls itself on the rest of the array until it finds a match or reaches the end of the array."
+  },
+  {
+    "instruction": "What happens if the given item is not included in the array?",
+    "input": "",
+    "output": "If the given item is not included in the array, the Includes type will eventually reach the end of the array and return false."
+  },
+  {
+    "instruction": "Implement the JavaScript Array.includes function in the type system. A type takes the two arguments. The output should be a boolean true or false.",
+    "input": "",
+    "output": "type IsEqual<T, U> =\n\t(<G>() => G extends T ? 1 : 2) extends\n\t(<G>() => G extends U ? 1 : 2)\n\t\t? true\n\t\t: false;\n\ntype Includes<Value extends any[], Item> =\n\tIsEqual<Value[0], Item> extends true\n\t\t? true\n\t\t: Value extends [Value[0], ...infer rest]\n\t\t\t? Includes<rest, Item>\n\t\t\t: false;"
+  },
+  {
+    "instruction": "What is the purpose of implementing the generic version of Array.push?",
+    "input": "",
+    "output": "Implementing the generic version of Array.push allows for the creation of a reusable function that can push any type of value to an array, rather than being limited to a specific type."
+  },
+  {
+    "instruction": "What is a generic type in TypeScript?",
+    "input": "",
+    "output": "A generic type in TypeScript is a type that can be used with multiple types, allowing for the creation of reusable code that can work with various data types."
+  },
+  {
+    "instruction": "What is the syntax for defining a generic type in TypeScript?",
+    "input": "",
+    "output": "The syntax for defining a generic type in TypeScript is to use angle brackets and a type parameter. For example, `function myFunction<T>(arg: T): T { ... }`"
+  },
+  {
+    "instruction": "What is the purpose of the extends keyword in the Push type?",
+    "input": "",
+    "output": "The extends keyword in the Push type is used to ensure that the type parameter T is an array, and can therefore be concatenated with the value U."
+  },
+  {
+    "instruction": "What is the purpose of the spread operator in the Push type?",
+    "input": "",
+    "output": "The spread operator in the Push type is used to create a new array that includes all the elements of the original array (T), followed by the new element (U)."
+  },
+  {
+    "instruction": "Can the Push type be used with any data type?",
+    "input": "",
+    "output": "No, the Push type can only be used with an array as the first type parameter (T), and any type as the second type parameter (U)."
+  },
+  {
+    "instruction": "Implement the generic version of Array.push\n",
+    "input": "",
+    "output": "type Push<T extends unknown[], U> = [...T, U]"
+  },
+  {
+    "instruction": "What is the purpose of implementing the type version of Array.unshift in TypeScript?",
+    "input": "",
+    "output": "Implementing the type version of Array.unshift in TypeScript allows for type-safe manipulation of arrays by adding an element to the beginning of an array and returning the new length of the array."
+  },
+  {
+    "instruction": "What is the syntax for implementing the type version of Array.unshift using TypeScript?",
+    "input": "",
+    "output": "The syntax for implementing the type version of Array.unshift using TypeScript is: type Unshift<T extends unknown[], U> = [U, ...T]."
+  },
+  {
+    "instruction": "What is the significance of the 'extends' keyword in the implementation of Unshift?",
+    "input": "",
+    "output": "The 'extends' keyword in the implementation of Unshift specifies that the generic type parameter T must be an array or a subtype of an array, ensuring type-safety when manipulating arrays."
+  },
+  {
+    "instruction": "What does the spread operator (...) do in the implementation of Unshift?",
+    "input": "",
+    "output": "The spread operator (...) in the implementation of Unshift allows for the concatenation of the generic type parameter T with a new element of type U, resulting in a new array with the added element at the beginning."
+  },
+  {
+    "instruction": "Implement the type version of Array.unshift\n",
+    "input": "",
+    "output": "// your answers\ntype Unshift<T extends unknown[], U> = [U, ...T]"
+  },
+  {
+    "instruction": "What is the purpose of the built-in Parameters generic in TypeScript?",
+    "input": "",
+    "output": "The built-in Parameters generic is used to extract the parameter types of a given function type and return them as a tuple type."
+  },
+  {
+    "instruction": "How do you implement the Parameters generic type in TypeScript?",
+    "input": "",
+    "output": "The Parameters generic type can be implemented using the infer keyword and conditional types. Here is an example implementation: `type MyParameters<T extends (...args: any[]) => any> = T extends (...any: infer S) => any ? S : any` where T is the function type."
+  },
+  {
+    "instruction": "What is the purpose of the infer keyword in TypeScript?",
+    "input": "",
+    "output": "The infer keyword in TypeScript is used in conditional types to infer a type parameter from another type. It allows you to extract a type from a given type and use it in a new type."
+  },
+  {
+    "instruction": "Can you provide an example of using the Parameters generic with a function?",
+    "input": "",
+    "output": "Yes, here is an example: `function myFunc(a: string, b: number, c: boolean) { /* function body */ }` The Parameters generic can be used as follows: `type MyParams = Parameters<typeof myFunc>` which will result in a tuple type of `[string, number, boolean]`."
+  },
+  {
+    "instruction": "What is conditional typing in TypeScript?",
+    "input": "",
+    "output": "Conditional typing in TypeScript is a way to create a type that depends on a condition. It allows you to create types that change based on the input type or some other condition."
+  },
+  {
+    "instruction": "How can you restrict the type of a parameter in a function using TypeScript?",
+    "input": "",
+    "output": "You can restrict the type of a parameter in a function using type annotations. For example, `function myFunc(param1: string) { /* function body */ }` will restrict the type of `param1` to only accept string values."
+  },
+  {
+    "instruction": "Implement the built-in Parameters generic",
+    "input": "",
+    "output": "type MyParameters<T extends (...args: any[]) => any> = T extends (...any: infer S) => any ? S : any "
+  },
+  {
+    "instruction": "What is the purpose of the ReturnType<T> generic in TypeScript?",
+    "input": "",
+    "output": "The ReturnType<T> generic is a built-in TypeScript utility type that is used to extract the return type of a function type. It takes a type T, which must be a function type, and returns the return type of that function type."
+  },
+  {
+    "instruction": "How does the MyReturnType<T> type differ from the built-in ReturnType<T> generic?",
+    "input": "",
+    "output": "The MyReturnType<T> type is a custom implementation of the ReturnType<T> generic. It uses the same logic as the built-in ReturnType<T> utility type to extract the return type of a function type, but it is not a built-in type and must be defined by the user."
+  },
+  {
+    "instruction": "What does the 'infer' keyword do in the MyReturnType<T> type?",
+    "input": "",
+    "output": "The 'infer' keyword in the MyReturnType<T> type is used to infer the return type of the function type T. It allows us to capture the type of the return value of a function without explicitly defining it."
+  },
+  {
+    "instruction": "What happens if the type T in the MyReturnType<T> type is not a function type?",
+    "input": "",
+    "output": "If the type T in the MyReturnType<T> type is not a function type, then the MyReturnType<T> type will evaluate to 'never'. This is because the conditional type in the implementation of MyReturnType<T> only matches function types."
+  },
+  {
+    "instruction": "Can the MyReturnType<T> type be used to extract the return type of a method on a class?",
+    "input": "",
+    "output": "Yes, the MyReturnType<T> type can be used to extract the return type of a method on a class as long as the method is defined as a function type. It will not work if the method is defined as an arrow function or if it does not have a return type."
+  },
+  {
+    "instruction": "Implement the built-in ReturnType<T> generic",
+    "input": "",
+    "output": "type MyReturnType<T extends Function> =\n  T extends (...args: any) => infer R\n    ? R\n    : never"
+  },
+  {
+    "instruction": "What is the purpose of the built-in Omit<T, K> generic in TypeScript?",
+    "input": "",
+    "output": "The built-in Omit<T, K> generic in TypeScript is used to create a new type that omits a set of specified properties K from an original type T."
+  },
+  {
+    "instruction": "What is the syntax for implementing a custom Omit<T, K> generic in TypeScript?",
+    "input": "",
+    "output": "The syntax for implementing a custom Omit<T, K> generic in TypeScript is: type MyOmit<T, K extends keyof T> = {[P in keyof T as P extends K ? never: P] :T[P]}."
+  },
+  {
+    "instruction": "What does the keyof keyword do in the implementation of the Omit<T, K> generic?",
+    "input": "",
+    "output": "The keyof keyword in the implementation of the Omit<T, K> generic is used to ensure that the specified keys K are valid keys of the original type T."
+  },
+  {
+    "instruction": "What is the purpose of the 'never' keyword in the implementation of the Omit<T, K> generic?",
+    "input": "",
+    "output": "The 'never' keyword in the implementation of the Omit<T, K> generic is used to exclude the specified properties K from the new type by setting them to a value that can never be assigned."
+  },
+  {
+    "instruction": "Can the Omit<T, K> generic be used with nested properties of an object?",
+    "input": "",
+    "output": "Yes, the Omit<T, K> generic can be used with nested properties of an object by specifying the path of the property using dot notation. For example, to omit the 'name' property of an object that is a property of the 'person' object, the type would be Omit<{ person: { name: string } }, 'person.name'>."
+  },
+  {
+    "instruction": "Implement the built-in Omit<T, K> generic ",
+    "input": "",
+    "output": "type MyOmit<T, K extends keyof T> = {[P in keyof T as P extends K ? never: P] :T[P]}"
+  },
+  {
+    "instruction": "What is the purpose of the DeepReadonly<T> type in TypeScript?",
+    "input": "",
+    "output": "The DeepReadonly<T> type in TypeScript is used to make every parameter of an object and its sub-objects recursively readonly."
+  },
+  {
+    "instruction": "What does the keyof keyword do in the DeepReadonly<T> type?",
+    "input": "",
+    "output": "The keyof keyword in the DeepReadonly<T> type is used to obtain the keys of a given type, which are then used to create a new readonly type."
+  },
+  {
+    "instruction": "What is the purpose of the extends never condition in the DeepReadonly<T> type?",
+    "input": "",
+    "output": "The extends never condition in the DeepReadonly<T> type is used to check if the given type has any keys. If the type has no keys, then the type itself is returned. Otherwise, a new readonly type is created."
+  },
+  {
+    "instruction": "What is the purpose of the [k in keyof T] syntax in the DeepReadonly<T> type?",
+    "input": "",
+    "output": "The [k in keyof T] syntax in the DeepReadonly<T> type is used to create a new readonly type by iterating over the keys of the original type and making each key readonly."
+  },
+  {
+    "instruction": "How does the DeepReadonly<T> type make sub-objects readonly?",
+    "input": "",
+    "output": "The DeepReadonly<T> type makes sub-objects readonly by recursively applying the readonly constraint to each sub-object using the same DeepReadonly<T> type."
+  },
+  {
+    "instruction": "Implement a generic DeepReadonly<T> which make every parameter of an object - and its sub-objects recursively - readonly.\n",
+    "input": "",
+    "output": "type DeepReadonly<T> = keyof T extends never\n  ? T\n  : { readonly [k in keyof T]: DeepReadonly<T[k]> };"
+  },
+  {
+    "instruction": "What is a tuple in TypeScript?",
+    "input": "",
+    "output": "A tuple in TypeScript is a fixed-length array with a specific type for each element. The type of each element in a tuple can be different from the others."
+  },
+  {
+    "instruction": "What is a union type in TypeScript?",
+    "input": "",
+    "output": "A union type in TypeScript allows a variable to have multiple types. It is denoted by using the ‘|’ operator between the types."
+  },
+  {
+    "instruction": "What is the purpose of the ‘infer’ keyword in TypeScript?",
+    "input": "",
+    "output": "The ‘infer’ keyword in TypeScript is used to infer or extract the type of a generic parameter in a conditional type."
+  },
+  {
+    "instruction": "What is the purpose of the ‘never’ keyword in TypeScript?",
+    "input": "",
+    "output": "The ‘never’ keyword in TypeScript represents a type that can never occur. It is used to indicate that a function will never return or that a variable cannot have any value."
+  },
+  {
+    "instruction": "How does the TupleToUnion<T> type work?",
+    "input": "",
+    "output": "The TupleToUnion<T> type takes a tuple type as input and uses conditional types and the ‘infer’ keyword to extract the type of each item in the tuple. The resulting type is a union of all the item types."
+  },
+  {
+    "instruction": "Can the TupleToUnion<T> type be used with tuples of different lengths?",
+    "input": "",
+    "output": "Yes, the TupleToUnion<T> type can be used with tuples of different lengths as long as the type of each element is the same."
+  },
+  {
+    "instruction": "Can the TupleToUnion<T> type be used with tuples of different element types?",
+    "input": "",
+    "output": "No, the TupleToUnion<T> type can only be used with tuples where each element has the same type."
+  },
+  {
+    "instruction": "Implement a generic TupleToUnion<T> which covers the values of a tuple to its values union.\n\n",
+    "input": "",
+    "output": "export type TupleToUnion<T> = T extends Array<infer ITEMS> ? ITEMS : never"
+  },
+  {
+    "instruction": "What is the Chainable type in TypeScript?",
+    "input": "",
+    "output": "Chainable is a generic type in TypeScript that represents an object or class with two functions, option(key, value) and get(), to extend the current config type by the given key and value and access the final result via get."
+  },
+  {
+    "instruction": "What is the syntax to define the Chainable type in TypeScript?",
+    "input": "",
+    "output": "The syntax to define the Chainable type in TypeScript is: `type Chainable<T = {}> = { option: <K extends string, V>(key: K extends keyof T ? V extends T[K] ? never : K : K, value: V) => Chainable<Omit<T, K> & Record<K, V>>, get: () => T }`."
+  },
+  {
+    "instruction": "What is the purpose of the option function in the Chainable type?",
+    "input": "",
+    "output": "The purpose of the option function in the Chainable type is to extend the current config type by the given key and value. It takes two parameters, key and value, and returns a new Chainable object that has the updated config type."
+  },
+  {
+    "instruction": "What is the purpose of the get function in the Chainable type?",
+    "input": "",
+    "output": "The purpose of the get function in the Chainable type is to access the final result of the config type. It takes no parameters and returns the current config type."
+  },
+  {
+    "instruction": "What is the Omit type in TypeScript?",
+    "input": "",
+    "output": "Omit is a built-in type in TypeScript that creates a new type by omitting specific properties from an existing type. It takes two parameters, the original type and the properties to be omitted, and returns a new type without those properties."
+  },
+  {
+    "instruction": "What is the Record type in TypeScript?",
+    "input": "",
+    "output": "Record is a built-in type in TypeScript that creates a new type by mapping keys to values. It takes two parameters, the keys and the values, and returns a new type with those mappings."
+  },
+  {
+    "instruction": "What is the keyof operator in TypeScript?",
+    "input": "",
+    "output": "The keyof operator in TypeScript is used to get the keys of a type as a union type. For example, `keyof {a: number, b: string}` would evaluate to the union type `'a' | 'b'`."
+  },
+  {
+    "instruction": "In this challenge, you need to type an object or a class - whatever you like - to provide two function option(key, value) and get(). In option, you can extend the current config type by the given key and value. We should about to access the final result via get.",
+    "input": "",
+    "output": " type Chainable<T = {}> = {\n  option: <K extends string, V>(key: K extends keyof T ?\n    V extends T[K] ? never : K\n    : K, value: V) => Chainable<Omit<T, K> & Record<K, V>>\n  get: () => T\n}"
+  },
+  {
+    "instruction": "What is a generic type in TypeScript?",
+    "input": "",
+    "output": "A generic type is a type that takes one or more types as parameters, allowing for flexibility and reusability in code. It is denoted by placing the type parameter(s) in angle brackets (<>) before the type name."
+  },
+  {
+    "instruction": "What is the purpose of the extends keyword in a generic type?",
+    "input": "",
+    "output": "The extends keyword is used in a generic type to specify a constraint on the type parameter. It ensures that the type parameter must be a subtype of the specified type. This helps to enforce type safety and prevent errors in code."
+  },
+  {
+    "instruction": "What is the keyof operator in TypeScript?",
+    "input": "",
+    "output": "The keyof operator in TypeScript is used to get the union type of all possible property names of a given type. It allows for more type-safe code by enabling developers to access object property keys as compile-time-checked strings."
+  },
+  {
+    "instruction": "How does the spread operator (...) work in TypeScript?",
+    "input": "",
+    "output": "The spread operator (...) in TypeScript is used to expand an array or object into individual elements. It can be used in various contexts, such as function calls, array literals, and object literals, to provide more flexibility in code and make it more concise."
+  },
+  {
+    "instruction": "How does the tuple type work in TypeScript?",
+    "input": "",
+    "output": "A tuple type in TypeScript is a type that represents an array with a fixed number of elements, where each element may have a different type. It is denoted by enclosing the element types in square brackets and separating them by commas. Tuple types provide type safety and help prevent errors when working with arrays of specific lengths."
+  },
+  {
+    "instruction": "How does the union type work in TypeScript?",
+    "input": "",
+    "output": "A union type in TypeScript is a type that allows a variable to have one of several possible types. It is denoted by using the pipe operator (|) between the types. Union types provide flexibility in code and enable developers to create more reusable and generic code."
+  },
+  {
+    "instruction": "How does the keyof and index type query operator ([]) work together in TypeScript?",
+    "input": "",
+    "output": "The keyof and index type query operator ([]) can be used together in TypeScript to access a specific property of an object. For example, if we have an object with properties 'a' and 'b', we could use the expression obj['a'] to access the value of property 'a'. By using the keyof operator, we can ensure that we only access valid property names at compile time."
+  },
+  {
+    "instruction": "How does the conditional type work in TypeScript?",
+    "input": "",
+    "output": "A conditional type in TypeScript is a type that depends on a condition. It is denoted by using the conditional operator (?) and the colon (:). Conditional types can be used to create more flexible and generic types, where the resulting type depends on the input type(s) and the given condition."
+  },
+  {
+    "instruction": "How can we use the ReturnType utility type in TypeScript?",
+    "input": "",
+    "output": "The ReturnType utility type in TypeScript is used to extract the return type of a given function type. It can be used to ensure type safety and prevent errors when working with functions that have specific return types. For example, if we have a function that returns a number, we could use ReturnType<typeof myFunc> to ensure that the result is always of type number."
+  },
+  {
+    "instruction": "How can we use the Pick utility type in TypeScript?",
+    "input": "",
+    "output": "The Pick utility type in TypeScript is used to create a new type by picking a subset of properties from an existing type. It is denoted by using the Pick keyword followed by the original type and a list of property names to pick. Pick can be used to create more generic and reusable types by extracting only the necessary properties from an object."
+  },
+  {
+    "instruction": "Implement a generic Last<T> that takes an Array T and returns its last element.\n",
+    "input": "",
+    "output": "type Last<T extends any[]> = [any, ...T][T[\"length\"]];"
+  },
+  {
+    "instruction": "What is the purpose of the generic type Pop<T>?",
+    "input": "",
+    "output": "The purpose of the generic type Pop<T> is to take an Array T and return an Array without its last element."
+  },
+  {
+    "instruction": "What is the syntax of the Pop<T> type in TypeScript?",
+    "input": "",
+    "output": "The syntax of the Pop<T> type in TypeScript is 'type Pop<T extends any[]> = T extends [...infer I, infer _] ? I : never'."
+  },
+  {
+    "instruction": "What is the significance of the 'extends any[]' syntax in the Pop<T> type?",
+    "input": "",
+    "output": "The 'extends any[]' syntax in the Pop<T> type ensures that the input is an array of any type."
+  },
+  {
+    "instruction": "What does the 'infer' keyword do in the Pop<T> type?",
+    "input": "",
+    "output": "The 'infer' keyword in the Pop<T> type allows the type inference of the last element of the input array."
+  },
+  {
+    "instruction": "What is the purpose of the '_' syntax in the Pop<T> type?",
+    "input": "",
+    "output": "The purpose of the '_' syntax in the Pop<T> type is to ignore the last element of the input array."
+  },
+  {
+    "instruction": "Implement a generic Pop<T> that takes an Array T and returns an Array without it's last element.",
+    "input": "",
+    "output": "type Pop<T extends any[]> = T extends [...infer I, infer _] ? I : never"
+  },
+  {
+    "instruction": "What is the use of the PromiseAll function in TypeScript?",
+    "input": "",
+    "output": "The PromiseAll function is used to accept an array of PromiseLike objects and return a Promise<T> where T is the resolved result array."
+  },
+  {
+    "instruction": "What is the return type of the PromiseAll function in TypeScript?",
+    "input": "",
+    "output": "The return type of the PromiseAll function in TypeScript is Promise<{ [K in keyof T]: T[K] extends Promise<infer R> ? R : T[K] }>, where T is the input array of PromiseLike objects."
+  },
+  {
+    "instruction": "What is the purpose of the keyof keyword in the PromiseAll function type definition?",
+    "input": "",
+    "output": "The keyof keyword in the PromiseAll function type definition is used to iterate over the keys of the input array of PromiseLike objects and create a new array of the same size with the resolved values."
+  },
+  {
+    "instruction": "Why is the infer keyword used in the PromiseAll function type definition?",
+    "input": "",
+    "output": "The infer keyword in the PromiseAll function type definition is used to infer the type of the resolved value of each Promise in the input array, which is then used to create the resulting array."
+  },
+  {
+    "instruction": "What is the purpose of the readonly keyword in the PromiseAll function type definition?",
+    "input": "",
+    "output": "The readonly keyword in the PromiseAll function type definition is used to ensure that the input array of PromiseLike objects cannot be mutated or changed during the execution of the function."
+  },
+  {
+    "instruction": "Type the function PromiseAll that accepts an array of PromiseLike objects, the returning value should be Promise<T> where T is the resolved result array.\n",
+    "input": "",
+    "output": "declare function PromiseAll<T extends any[]>(values: readonly [...T]):\n  Promise<{ [K in keyof T]: T[K] extends Promise<infer R> ? R : T[K] }>;"
+  },
+  {
+    "instruction": "What is the purpose of the TrimLeft<T> type in TypeScript?",
+    "input": "",
+    "output": "The purpose of the TrimLeft<T> type in TypeScript is to take an exact string type and return a new string with the whitespace beginning removed."
+  },
+  {
+    "instruction": "What is the Space type in the TrimLeft<T> implementation?",
+    "input": "",
+    "output": "The Space type in the TrimLeft<T> implementation is a union type that includes the space character, newline character, and tab character."
+  },
+  {
+    "instruction": "What is the extends keyword used for in the TrimLeft<T> implementation?",
+    "input": "",
+    "output": "The extends keyword in the TrimLeft<T> implementation is used to check if the input string S starts with one or more whitespace characters. If it does, the implementation applies the TrimLeft type recursively to the remainder of the string."
+  },
+  {
+    "instruction": "What is the infer keyword used for in the TrimLeft<T> implementation?",
+    "input": "",
+    "output": "The infer keyword in the TrimLeft<T> implementation is used to capture a substring of the input string S that follows one or more whitespace characters."
+  },
+  {
+    "instruction": "How does the TrimLeft<T> implementation remove whitespace characters from the beginning of a string?",
+    "input": "",
+    "output": "The TrimLeft<T> implementation removes whitespace characters from the beginning of a string by checking if the input string S starts with one or more whitespace characters, and if so, applying the TrimLeft type recursively to the remainder of the string until the first non-whitespace character is reached."
+  },
+  {
+    "instruction": "Implement TrimLeft<T> which takes an exact string type and returns a new string with the whitespace beginning removed.\n",
+    "input": "",
+    "output": "type Space = ' ' | '\\n' | '\\t'\ntype TrimLeft<S extends string> = S extends `${Space}${infer R}` ? TrimLeft<R> : S"
+  },
+  {
+    "instruction": "What is the purpose of the Trim<T> type in TypeScript?",
+    "input": "",
+    "output": "The purpose of the Trim<T> type in TypeScript is to take an exact string type and return a new string with the whitespace from both ends removed."
+  },
+  {
+    "instruction": "What type of input does the Trim<T> type take in TypeScript?",
+    "input": "",
+    "output": "The Trim<T> type takes an exact string type as input in TypeScript."
+  },
+  {
+    "instruction": "What is the Space type in the implementation of the Trim<T> type in TypeScript?",
+    "input": "",
+    "output": "The Space type in the implementation of the Trim<T> type in TypeScript is a union type that represents different whitespace characters, such as space, tab, and newline."
+  },
+  {
+    "instruction": "How does the implementation of the Trim<T> type remove whitespace from both ends of a string?",
+    "input": "",
+    "output": "The implementation of the Trim<T> type in TypeScript removes whitespace from both ends of a string by recursively checking if the string starts or ends with a whitespace character, and if it does, it removes that character and calls itself with the remaining string until there are no more whitespace characters at the beginning or end of the string."
+  },
+  {
+    "instruction": "What is the return type of the Trim<T> type in TypeScript?",
+    "input": "",
+    "output": "The return type of the Trim<T> type in TypeScript is a new string with the whitespace from both ends removed."
+  },
+  {
+    "instruction": "Implement Trim<T> which takes an exact string type and returns a new string with the whitespace from both ends removed.\n",
+    "input": "",
+    "output": "type Space = ' ' | '\\t' | '\\n';\n\ntype Trim<S extends string> = S extends `${Space}${infer T}` | `${infer T}${Space}` ? Trim<T> : S;"
   }
 ]
